@@ -11,4 +11,18 @@
     <string name="date">Fecha de Nacimiento</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hombre">Masculino</string>
+    <string name="seleccionar_fecha">FECHA</string>
+    <string name="fecha">Fecha</string>
+    <string name="primer_nombr">Nombre(s)</string>
+    <string name="primer_nombre">Nombre(s)</string>
+    <string name="primer_apellido">Apellido Paterno</string>
+    <string name="segundo_apellido">Apellido Materno</string>
+    <string name="mujer">Femenino</string>
+    <string name="crear">Crear</string>
+    <string name="limpiar">Borrar</string>
+    <string name="curp">CURP</string>
+    <string name="estado">Estado</string>
+    <string name="crea">Crear</string>
+    <string name="resultado_rfc">RFC Generado</string>
 </resources>
