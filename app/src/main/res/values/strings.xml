@@ -12,7 +12,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hombre">Masculino</string>
-    <string name="seleccionar_fecha">FECHA</string>
+    <string name="seleccionar_fecha">Fecha de Nacimiento</string>
     <string name="fecha">Fecha</string>
     <string name="primer_nombr">Nombre(s)</string>
     <string name="primer_nombre">Nombre(s)</string>
@@ -22,7 +22,7 @@
     <string name="crear">Crear</string>
     <string name="limpiar">Borrar</string>
     <string name="curp">CURP</string>
-    <string name="estado">Estado</string>
+    <string name="estado">Lugar de Nacimiento</string>
     <string name="crea">Crear</string>
     <string name="resultado_rfc">RFC Generado</string>
 </resources>

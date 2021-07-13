@@ -1,22 +1,24 @@
 package com.example.finalapp
 
-import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_curp.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_rfc_generator.*
 import java.util.*
 
 class Curp : AppCompatActivity() {
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_curp)
 
         var sexo = ""
         val valores = mutableListOf("0","1","2","3","4","5","6","7","8","9")
-        var estados = arrayOf("AS-Aguascalientes","BC-Baja California","BS-Baja California Sur","CC-Campeche","CL-Coahuila","CM-Colima","CS-Chiapas",
+        val estados = arrayOf("Lugar de Nacimiento","AS-Aguascalientes","BC-Baja California","BS-Baja California Sur","CC-Campeche","CL-Coahuila","CM-Colima","CS-Chiapas",
             "CH-Chihuahua","DG-Durango","GT-Guanajuato","GR-Guerrero","HG-Hidalgo","JC-Jalisco","MC-México","MN-Michoacán","MS-Morelos","NT-Nayarit",
             "NL-Nuevo León","OC-Oaxaca","PL-Puebla","QT-Querétaro","QR-Quintana Roo","SP-San Luis Potosí","SL-Sinaloa","SR-Sonora","TC-Tabasco","TS-Tamaulipas",
             "TL-Tlaxcala","VZ-Veracruz","YN-Yucatan","ZS-Zacatecas","NE-Nacido en el Extrenjero")
@@ -37,33 +39,20 @@ class Curp : AppCompatActivity() {
             }
 
         }
-        //Calendario para selesccionar la fecha de nacimiento
 
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-
-        //Boton para desplegar el Date Picker Dialog para poder seleccionar el dia, mes año de nacimiento
-        fechabtn.setOnClickListener {
-            var dpd = DatePickerDialog(this,DatePickerDialog.OnDateSetListener { view, mYear, mMonth, mDay ->
-                //se le asigna a una variable llamada mes el valor de mMonth+1 ya que por defualt se agrega los meses con 1 de diferencia y posteriormente es pasado a un valor STRING
-                var mes = (mMonth+1).toString()
-                //si el valor de mes en INT es menor a 10 al momento de imprimir seria 1,2,3.... y para el caso del curp se debe presentar como 01,02,03......
-                //entonces si el valor es menor a 10 se le agrega un 0 antes para cumplir el como lo necesita el curp
-                if (mes.toInt()<10){
+        fechaText.setOnClickListener {
+            val datePicker = DatePickerFragment { day, month, year ->
+                var mes = (month + 1).toString()
+                if (mes.toInt() < 10) {
                     mes = "0" + mes
                 }
-                //AL igual que con los meses los dias inferiores a 10 se presentan como 1,2,3...... y para el uso del curp se debe presentar como 01,02,03
-                //entonces si el valor del dia es menor a 10 se le agrega un 0 antes
-                var dia = (mDay).toString()
-                if (dia.toInt()<10){
+                var dia = (day).toString()
+                if (dia.toInt() < 10) {
                     dia = "0" + dia
                 }
-                //Tengo un txt donde se muestra fecha una ves seleccionado con el formato DD/MM/YY el formato no afecta a la creacion del curp solo al aocomodo de los valores
-                fechatxt.setText(""+ dia + "/" + (mes) + "/" + mYear)},year, month, day)
-            //Se muestra el Date Picker
-            dpd.show()
+                fechaText.setText("$dia/$mes/$year")
+            }
+            datePicker.show(supportFragmentManager, "datePicker")
         }
 
         radio_G.setOnCheckedChangeListener { group, i ->
@@ -77,11 +66,11 @@ class Curp : AppCompatActivity() {
 
 
         btncrear.setOnClickListener {
-            val nombre = nombretxt.text;
+            val nombre = nombretxt.text
             val apellido1 = apellidotxt.text
             val apellido2 = apellido2txt.text
             var apellidoVocal = removerconsonante(apellido1.toString())
-            val fecha = fechatxt.text.toString()
+            val fecha = fechaText.text.toString()
             val consonanteapellido1 = removervocal(apellido1.toString())
             val consonanteapellido2 = removervocal(apellido2.toString())
             val consonantenombre = removervocal(nombre.toString())
@@ -144,12 +133,12 @@ class Curp : AppCompatActivity() {
             apellido.text.clear()
             var apellido2 = findViewById<EditText>(R.id.apellido2txt)
             apellido2.text.clear()
-            var fecha = findViewById<TextView>(R.id.fechatxt)
-            fecha.setText("Fecha")
+            var fecha = findViewById<TextView>(R.id.fechaText)
+            fecha.setText("")
             var estado = findViewById<TextView>(R.id.Estadotxt)
-            estado.setText("Estado")
+            estado.setText("")
             var curp = findViewById<TextView>(R.id.curp)
-            curp.setText("CURP")
+            curp.setText("")
         }
     }
 
