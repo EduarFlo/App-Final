@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Final App</string>
+    <string name="final_app">FINAL APP</string>
+    <string name="generar_curp">Generar CURP</string>
+    <string name="amigo_secreto">AMIGO SECRETO</string>
+    <string name="generar_rfc">Generar RFC</string>
+    <string name="rfc_generator">Generador de RFC</string>
+    <string name="nombre">Nombre(s)</string>
+    <string name="apellidoP">Apellido Paterno</string>
+    <string name="apellidoM">Apellido Materno</string>
+    <string name="date">Fecha de Nacimiento</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
